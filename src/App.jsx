@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 
 import './App.css'
 
+import './components/PokemonCard.jsx'
+import GeneratePokemonCard from './components/PokemonCard.jsx';
+
 function App() {
   const pokemonArray=["pikachu","squirtle","charmander","onix","bulbasaur","caterpie",
     "rattata","spearow","nidorino","clefairy","jigglypuff","mewtwo"];
@@ -9,12 +12,19 @@ function App() {
   const [pokemonInfoArray,setPokemonInfoArray]=useState([]);
   useEffect(()=>{
     async function getPokemon(){
-      const promises=pokemonArray.map(pokemon=>fetch(pokeUrl+pokemon)
-                                  .then(res=>res.json())
-                                      .then(data=>({name:data.name,image:data.sprites.other["official-artwork"].front_default})));
+      const promises=pokemonArray.map(async (pokemon)=>{
+        const res= await fetch(pokeUrl+pokemon);
+        const data=await res.json();
+        return{
+          name:data.name,
+          image:data.sprites.other["official-artwork"].front_default
+        }
+      }
+    );
       const pokemonData= await Promise.all(promises);
       setPokemonInfoArray(pokemonData);
-      console.log(pokemonData[8]);
+      console.log(pokemonData);
+      console.log(pokemonInfoArray);
 
     }
     getPokemon();
@@ -26,7 +36,9 @@ function App() {
   return (
     <>
       <p>Memory Card Game</p>
-      <div>
+      <div className='cardHolder'>
+        {pokemonInfoArray.map(
+          (item,indice)=>{return <GeneratePokemonCard key={indice} pokemon={item} />})}
 
       </div>
       
