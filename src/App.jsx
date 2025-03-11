@@ -9,10 +9,12 @@ function App() {
   const [pokemonInfoArray,setPokemonInfoArray]=useState([]);
   useEffect(()=>{
     async function getPokemon(){
-      const promises=pokemonArray.map(pokemon=>fetch(pokeUrl+pokemon).then(res=>res.json()));
+      const promises=pokemonArray.map(pokemon=>fetch(pokeUrl+pokemon)
+                                  .then(res=>res.json())
+                                      .then(data=>({name:data.name,image:data.sprites.other["official-artwork"].front_default})));
       const pokemonData= await Promise.all(promises);
       setPokemonInfoArray(pokemonData);
-      console.log(pokemonData[0].name)
+      console.log(pokemonData[8]);
 
     }
     getPokemon();
@@ -23,6 +25,10 @@ function App() {
 
   return (
     <>
+      <p>Memory Card Game</p>
+      <div>
+
+      </div>
       
     </>
   )
