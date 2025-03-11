@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from "uuid";
+
 
 import './App.css'
 
@@ -48,7 +50,7 @@ function App() {
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
-          (item,indice)=>{return <GeneratePokemonCard key={indice} pokemon={item} />})}
+          (item)=>{return <GeneratePokemonCard key={uuidv4()} pokemon={item} />})}
 
       </div>
       
