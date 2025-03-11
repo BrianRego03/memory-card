@@ -10,9 +10,12 @@ function App() {
     "rattata","spearow","nidorino","clefairy","jigglypuff","mewtwo"];
   const pokeUrl="https://pokeapi.co/api/v2/pokemon/";  
   const [pokemonInfoArray,setPokemonInfoArray]=useState([]);
+  const [loading, setLoading] = useState(true); 
   useEffect(()=>{
     async function getPokemon(){
-      const promises=pokemonArray.map(async (pokemon)=>{
+      try {
+        setLoading(true);
+        const promises=pokemonArray.map(async (pokemon)=>{
         const res= await fetch(pokeUrl+pokemon);
         const data=await res.json();
         return{
@@ -25,7 +28,13 @@ function App() {
       setPokemonInfoArray(pokemonData);
       console.log(pokemonData);
       console.log(pokemonInfoArray);
-
+    }
+    catch(error){
+      console.error("Error fetching Pokémon data:", error);
+    }
+    finally{
+      setLoading(false);
+    }
     }
     getPokemon();
 
@@ -36,6 +45,7 @@ function App() {
   return (
     <>
       <p>Memory Card Game</p>
+      {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
           (item,indice)=>{return <GeneratePokemonCard key={indice} pokemon={item} />})}
