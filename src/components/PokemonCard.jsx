@@ -1,10 +1,10 @@
 import "../styles/PokemonCard.css"
 
 
-function GeneratePokemonCard({pokemon}){
+function GeneratePokemonCard({pokemon, onClick}){
 
     return(
-        <div>
+        <div onClick={onClick}>
             <img className="pokemonImage" src={pokemon.image} />
             <p>{pokemon.name}</p>
         </div>

@@ -30,6 +30,7 @@ function App() {
       setPokemonInfoArray(pokemonData);
       console.log(pokemonData);
       console.log(pokemonInfoArray);
+      console.log(shuffleArray(pokemonInfoArray));
     }
     catch(error){
       console.error("Error fetching Pokémon data:", error);
@@ -42,6 +43,22 @@ function App() {
 
   }, []);
 
+  function shuffleArray(inputArray){
+    const shuffled = [...inputArray]; 
+    for(let i=shuffled.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  function shufflepokemon(){
+    console.log("hello");
+    console.log(pokemonInfoArray);
+    setPokemonInfoArray(shuffleArray(pokemonInfoArray));
+    
+  }
+
   // console.log(pokemonInfoArray);
 
   return (
@@ -50,7 +67,8 @@ function App() {
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
-          (item)=>{return <GeneratePokemonCard key={uuidv4()} pokemon={item} />})}
+          (item,indice)=>{return <GeneratePokemonCard key={indice} pokemon={item} 
+          onClick={shufflepokemon}/>})}
 
       </div>
       
