@@ -1,16 +1,12 @@
 
 
-function ScoreBoard({history,clear}){
-    for(let i=history.length-2;i>=0;i--){
-        if (history[history.length-1]==history[i]){
-            clear();
-        }
+function ScoreBoard({score,highScore}){
 
-    }
 
     return(
         <>
-            <p>Score:{history.length}</p>
+            <p>Score:{score}</p>
+            <p>High Score:{highScore}</p>
         </>
     )
 }

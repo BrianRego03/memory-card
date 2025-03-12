@@ -15,6 +15,7 @@ function App() {
   const [pokemonInfoArray,setPokemonInfoArray]=useState([]);
   const [loading, setLoading] = useState(true);
   const [clickHistory, setClickHistory] = useState([]); 
+  const [highScore,setHighScore] = useState(0);
   useEffect(()=>{
     async function getPokemon(){
       try {
@@ -62,19 +63,37 @@ function App() {
   }
 
   function recordClick(selectedCard){
-    setClickHistory([...clickHistory,selectedCard])
-    console.log([...clickHistory,selectedCard]);
+    let updatedHistory=[...clickHistory,selectedCard];
+
+
+
+    for(let i=updatedHistory.length;i>1;i--){
+      if (updatedHistory[updatedHistory.length-1]==updatedHistory[i-2]){
+          clearHistory();
+          return;
+      }
+    }
+      
+    setClickHistory(updatedHistory);
+    checkHighScore(updatedHistory);
+  
+  }
+
+  function checkHighScore(array){
+    if(array.length>highScore){
+      setHighScore(array.length);
+    }
+
   }
 
   function clearHistory(){
     setClickHistory([]);
   }
-  // console.log(pokemonInfoArray);
 
   return (
     <>
       <p>Memory Card Game</p>
-      <ScoreBoard history={clickHistory} clear={clearHistory}/>
+      <ScoreBoard score={clickHistory.length} clear={clearHistory} highScore={highScore}/>
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
