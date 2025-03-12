@@ -71,7 +71,7 @@ function App() {
   return (
     <>
       <p>Memory Card Game</p>
-      <ScoreBoard />
+      <ScoreBoard history={clickHistory}/>
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
