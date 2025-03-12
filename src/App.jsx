@@ -66,12 +66,15 @@ function App() {
     console.log([...clickHistory,selectedCard]);
   }
 
+  function clearHistory(){
+    setClickHistory([]);
+  }
   // console.log(pokemonInfoArray);
 
   return (
     <>
       <p>Memory Card Game</p>
-      <ScoreBoard history={clickHistory}/>
+      <ScoreBoard history={clickHistory} clear={clearHistory}/>
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
