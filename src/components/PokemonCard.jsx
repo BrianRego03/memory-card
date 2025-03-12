@@ -1,10 +1,15 @@
 import "../styles/PokemonCard.css"
 
 
-function GeneratePokemonCard({pokemon, onClick}){
+function GeneratePokemonCard({pokemon, shuffler,record}){
+
+    function appCallback(){
+        shuffler();
+        record(pokemon.name);
+    }
 
     return(
-        <div onClick={onClick}>
+        <div onClick={appCallback}>
             <img className="pokemonImage" src={pokemon.image} />
             <p>{pokemon.name}</p>
         </div>

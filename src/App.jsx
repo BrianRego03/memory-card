@@ -12,7 +12,8 @@ function App() {
     "rattata","spearow","nidorino","clefairy","jigglypuff","mewtwo"];
   const pokeUrl="https://pokeapi.co/api/v2/pokemon/";  
   const [pokemonInfoArray,setPokemonInfoArray]=useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+  const [clickHistory, setClickHistory] = useState([]); 
   useEffect(()=>{
     async function getPokemon(){
       try {
@@ -59,6 +60,11 @@ function App() {
     
   }
 
+  function recordClick(selectedCard){
+    setClickHistory([...clickHistory,selectedCard])
+    console.log([...clickHistory,selectedCard]);
+  }
+
   // console.log(pokemonInfoArray);
 
   return (
@@ -68,7 +74,7 @@ function App() {
       <div className='cardHolder'>
         {pokemonInfoArray.map(
           (item,indice)=>{return <GeneratePokemonCard key={indice} pokemon={item} 
-          onClick={shufflepokemon}/>})}
+          shuffler={shufflepokemon} record={recordClick} />})}
 
       </div>
       
