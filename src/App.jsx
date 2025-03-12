@@ -6,6 +6,7 @@ import './App.css'
 
 import './components/PokemonCard.jsx'
 import GeneratePokemonCard from './components/PokemonCard.jsx';
+import ScoreBoard from './components/ScoreBoard.jsx';
 
 function App() {
   const pokemonArray=["pikachu","squirtle","charmander","onix","bulbasaur","caterpie",
@@ -70,6 +71,7 @@ function App() {
   return (
     <>
       <p>Memory Card Game</p>
+      <ScoreBoard />
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(
