@@ -94,6 +94,7 @@ function App() {
     <>
       <p>Memory Card Game</p>
       <ScoreBoard score={clickHistory.length} clear={clearHistory} highScore={highScore}/>
+      <p>Rules: Don't click on the same pokemon twice!</p>
       {loading&&(<p>Gotta catch em all!!!</p>)}
       <div className='cardHolder'>
         {pokemonInfoArray.map(

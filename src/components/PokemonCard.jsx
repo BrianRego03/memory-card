@@ -11,7 +11,7 @@ function GeneratePokemonCard({pokemon, shuffler,record}){
     return(
         <div className="cardDiv" onClick={appCallback}>
             <img className="pokemonImage" src={pokemon.image} />
-            <p>{pokemon.name}</p>
+            <p className="pokeName">{pokemon.name}</p>
         </div>
     )
 

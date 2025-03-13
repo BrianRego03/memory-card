@@ -16,3 +16,8 @@
     background-color: rgb(51, 0, 103);
     color: aliceblue;
 }
+
+.pokeName{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
