@@ -9,7 +9,7 @@ function GeneratePokemonCard({pokemon, shuffler,record}){
     }
 
     return(
-        <div onClick={appCallback}>
+        <div className="cardDiv" onClick={appCallback}>
             <img className="pokemonImage" src={pokemon.image} />
             <p>{pokemon.name}</p>
         </div>

@@ -1,3 +1,18 @@
 .pokemonImage{
-    max-height: 300px;
+    width: 15vw;
+    min-width: 170px;
+}
+
+.cardDiv{
+    margin: 1px;
+    border: 1px solid rgb(148, 115, 180);
+    text-align: center;
+    font-size: 1.5rem;
+    
+}
+
+.cardDiv:hover
+{
+    background-color: rgb(51, 0, 103);
+    color: aliceblue;
 }
